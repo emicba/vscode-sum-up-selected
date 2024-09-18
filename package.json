@@ -3,7 +3,7 @@
   "displayName": "Sum Up Selected",
   "description": "Sum up selected numbers, display the result in the status bar. Simple as that.",
   "publisher": "Emi",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "icon": "images/icon.png",
   "engines": {
     "vscode": "^1.93.0"
