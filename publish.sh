@@ -7,5 +7,5 @@ fi
 
 set -ex
 
-npx @vscode/vsce package --allow-star-activation
-npx @vscode/vsce publish --allow-star-activation --pat "$VSCE_TOKEN"
+npx @vscode/vsce package
+npx @vscode/vsce publish --pat "$VSCE_TOKEN"
