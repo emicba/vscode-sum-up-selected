@@ -12,3 +12,4 @@ webpack.config.js
 **/*.map
 **/*.ts
 **/.vscode-test.*
+images/demo.png
