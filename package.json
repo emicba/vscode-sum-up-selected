@@ -1,7 +1,8 @@
 {
   "name": "vscode-sum-up-selected",
-  "displayName": "vscode-sum-up-selected",
-  "description": "Sum up selected numbers, display the result in the Status Bar. Simple as that.",
+  "displayName": "Sum Up Selected",
+  "description": "Sum up selected numbers, display the result in the status bar. Simple as that.",
+  "publisher": "Emi",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.93.0"
@@ -13,6 +14,10 @@
     "*"
   ],
   "browser": "./dist/web/extension.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/emicba/vscode-sum-up-selected"
+  },
   "scripts": {
     "vscode:prepublish": "npm run package-web",
     "compile-web": "webpack",
@@ -39,5 +44,6 @@
     "typescript": "^5.3.3",
     "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4"
-  }
+  },
+  "license": "MIT"
 }
