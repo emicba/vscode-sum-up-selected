@@ -19,12 +19,14 @@ function updateStatusBarItem() {
 
   let match = REGEXP.exec(text);
   let sum = 0;
+  let containsNumber = match !== null;
   while (match) {
     sum += parseFloat(match[0]);
+    containsNumber = true;
     match = REGEXP.exec(text);
   }
 
-  if (sum === 0) {
+  if (!containsNumber) {
     statusBarItem.hide();
     return;
   }
