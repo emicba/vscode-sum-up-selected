@@ -1,4 +1,4 @@
-# Sum Up Selected README
+# Sum Up Selected
 
 ## Features
 
