@@ -1,26 +1,42 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
-export function activate(context: vscode.ExtensionContext) {
-  // Use the console to output diagnostic information (console.log) and errors (console.error)
-  // This line of code will only be executed once when your extension is activated
-  console.log('Congratulations, your extension "vscode-sum-up-selected" is now active in the web extension host!');
+let statusBarItem: vscode.StatusBarItem;
 
-  // The command has been defined in the package.json file
-  // Now provide the implementation of the command with registerCommand
-  // The commandId parameter must match the command field in package.json
-  let disposable = vscode.commands.registerCommand('vscode-sum-up-selected.helloWorld', () => {
-    // The code you place here will be executed every time your command is executed
+const REGEXP = /-?\d+(\.\d+)?/g;
 
-    // Display a message box to the user
-    vscode.window.showInformationMessage('Hello World from vscode-sum-up-selected in a web extension host!');
-  });
+function updateStatusBarItem() {
+  const editor = vscode.window.activeTextEditor;
+  if (!editor) {
+    statusBarItem.hide();
+    return;
+  }
+  const text = editor.document.getText(editor.selection);
 
-  context.subscriptions.push(disposable);
+  if (!text) {
+    statusBarItem.hide();
+    return;
+  }
+
+  let match = REGEXP.exec(text);
+  let sum = 0;
+  while (match) {
+    sum += parseFloat(match[0]);
+    match = REGEXP.exec(text);
+  }
+
+  if (sum === 0) {
+    statusBarItem.hide();
+    return;
+  }
+
+  statusBarItem.text = `Sum: ${sum}`;
+  statusBarItem.show();
 }
 
-// This method is called when your extension is deactivated
-export function deactivate() {}
+export function activate({ subscriptions }: vscode.ExtensionContext) {
+  statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 100);
+
+  subscriptions.push(statusBarItem);
+  subscriptions.push(vscode.window.onDidChangeActiveTextEditor(updateStatusBarItem));
+  subscriptions.push(vscode.window.onDidChangeTextEditorSelection(updateStatusBarItem));
+}

@@ -9,19 +9,11 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "*"
+  ],
   "browser": "./dist/web/extension.js",
-  "contributes": {
-    "commands": [
-      {
-        "command": "vscode-sum-up-selected.helloWorld",
-        "title": "Hello World"
-      }
-    ]
-  },
   "scripts": {
-    "test": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=. --extensionTestsPath=dist/web/test/suite/index.js",
-    "pretest": "npm run compile-web",
     "vscode:prepublish": "npm run package-web",
     "compile-web": "webpack",
     "watch-web": "webpack --watch",
